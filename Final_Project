@@ -1,0 +1,64 @@
+subject = 0;
+subject_total = input('How many subjects are you testing? ');
+sleep_vec = [];
+age_vec = [];
+reactionTime_blue_vec = [];
+reactionTime_red_vec = [];
+while subject < subject_total
+%% Collects demographic data
+    age = input('what is your age? ');
+    age_vec = [age_vec age];
+    sleep = input('How many hours did you sleep last night? ');
+    if sleep >= 8
+        % 1 = more than 8 hours of sleep
+        sleep_vec = [sleep_vec 1];
+    else
+        % 2 = less than 8 hours of sleep
+        sleep_vec = [sleep_vec 0];
+    end
+%% Stimulus
+    %creates blank figure
+    clf 
+    %creates a random pause timer for stimulus to flash   
+    pause(randi(3))
+    hold on
+    
+    %Puts on the blue stimulus
+    rectangle('Position',[0 0 10 10] ,'FaceColor', 'b', 'EdgeColor', 'b');
+    axis([0 10 0 10])
+    set(gca,'xtick',[],'ytick',[])
+    %starts the clock
+    blue_stim = tic;    
+    %waits for you to press a button
+    waitforbuttonpress;   
+    %measures the reaction time
+    reactionTime_blue = toc(blue_stim);
+    reactionTime_blue_vec = [reactionTime_blue_vec reactionTime_blue];
+    
+    %resets the stimulus
+    pause(randi(3))
+    clf('reset')
+    
+    %makes new timer    
+    pause(randi(3))
+    hold on
+    
+    %Puts on the red stimulus
+    rectangle('Position',[0 0 10 10] ,'FaceColor', 'r', 'EdgeColor', 'r');
+    axis([0 10 0 10])
+    set(gca,'xtick',[],'ytick',[])
+    
+    %starts the clock
+    red_stim = tic;  
+    %waits for you to press a button
+    waitforbuttonpress;  
+    %measures the reaction time
+    reactionTime_red = toc(red_stim);
+    reactionTime_red_vec = [reactionTime_red_vec reactionTime_red];
+    pause(randi(3))
+    
+    close all  
+    subject = subject+1;
+end
+
+save('subject_data')
