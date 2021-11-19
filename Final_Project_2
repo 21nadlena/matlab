@@ -1,6 +1,7 @@
-[y Fs]= audioread('Biology321Audiofile.mp4');
+[y, Fs]= audioread('Biology321Audiofile.mp4');
 subject = 0;
 subject_total = input('*FOR ADMINISTRATOR* How many subjects are you testing? ');
+subject_name = input('*FOR ADMINISTRATOR* Please name this dataset: ', 's');
 sleep_vec = [];
 age_vec = [];
 reactionTime_blue_vec = [];
@@ -110,5 +111,5 @@ reactionTime_red_vec = [reactionTime_red_vec reactionTime_red reactionTime_red_2
 end
 
 %remove extra variables so data analysis is a little easier
-clear red_stim blue_stim red_stim_2 blue_stim_2 sleep
-save('subject_data')
+clear red_stim blue_stim red_stim_2 blue_stim_2 y Fs reactionTime_blue sleep age reactionTime_red reactionTime_blue_2 reactionTime_red_2 subject
+save(num2str(subject_name))
