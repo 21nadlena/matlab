@@ -119,3 +119,42 @@ end
 %remove extra variables so data analysis is a little easier
 clear red_stim blue_stim red_stim_2 blue_stim_2 y Fs reactionTime_blue sleep age reactionTime_red reactionTime_blue_2 reactionTime_red_2 subject
 save(num2str(subject_name))
+
+
+%%%%%%%%%Data Analysis
+
+%#1) comparison of ages with subjects mean reaction time on two different
+%bar graphs (subplotted)
+
+    %creates mean per subject
+    rR=reshape(reactionTime_red_vec,2,[])
+    rB=reshape(reactionTime_blue_vec,2,[])
+    rRbar=mean(rR)
+    rBbar=mean(rB)
+
+    figure
+    subplot(1,2,1)
+    bar(age_vec,rRbar,'r')
+    hold on;
+    subplot(1,2,2)
+    bar(age_vec,rBbar,'b')
+
+%#2 plot of reaction times to hours slep
+    figure
+    subplot(1,2,1)
+    bar(sleep_vec,rRbar,'r')
+    hold on;
+    subplot(1,2,2)
+    bar(sleep_vec,rBbar,'b')
+        %needs worked
+
+%#3 red reaction time vs blue reaction time with xlabel as value
+figure
+    subplot(1,2,1)
+    bar(1,meanrr,'r')
+    xlabel(meanrr)
+    hold on;
+    subplot(1,2,2)
+    bar(1,meanbr,'b')
+    xlabel(meanbr)
+
