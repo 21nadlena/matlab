@@ -108,16 +108,20 @@ while subject < subject_total
 reactionTime_blue_vec = [reactionTime_blue_vec reactionTime_blue reactionTime_blue_2];
 reactionTime_red_vec = [reactionTime_red_vec reactionTime_red reactionTime_red_2];
 
+%creates the mean for all subjects reaction times
+meanrr = (reactionTime_red + reactionTime_red_2)/2;
+meanbr = (reactionTime_blue + reactionTime_blue_2)/2;
 
-  %creates the mean for all subjects reaction times
-  meanrr=mean(reactionTime_red_vec);
-  meanbr=mean(reactionTime_blue_vec);
-  % adds 1 to the while loop
+%stores these means into a vector
+meanbr_vec = [meanbr_vec meanbr];
+meanrr_vec = [meanrr_vec meanrr];
+
+% adds 1 to the while loop
     subject = subject+1;
 end
 
 %remove extra variables so data analysis is a little easier
-clear red_stim blue_stim red_stim_2 blue_stim_2 y Fs reactionTime_blue sleep age reactionTime_red reactionTime_blue_2 reactionTime_red_2 subject
+clear red_stim blue_stim red_stim_2 blue_stim_2 y Fs reactionTime_blue sleep age reactionTime_red reactionTime_blue_2 reactionTime_red_2
 save(num2str(subject_name))
 
 
