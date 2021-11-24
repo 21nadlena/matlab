@@ -102,11 +102,17 @@ while subject < subject_total
     pause(randi(3)) 
     sound(y, Fs)
     close all
-
+    
+    
 %stores all the data into a vector
 reactionTime_blue_vec = [reactionTime_blue_vec reactionTime_blue reactionTime_blue_2];
 reactionTime_red_vec = [reactionTime_red_vec reactionTime_red reactionTime_red_2];
 
+
+  %creates the mean for all subjects reaction times
+  meanrr=mean(reactionTime_red_vec);
+  meanbr=mean(reactionTime_blue_vec);
+  % adds 1 to the while loop
     subject = subject+1;
 end
 
